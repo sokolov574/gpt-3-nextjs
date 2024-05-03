@@ -1,12 +1,18 @@
+"use client";
+
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import mainImage from '@/assets/images/main-image.png'
 import { Form, Button, Spinner } from 'react-bootstrap'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
+
 
 
 export default function Home() {
+
+  const [quote, setQuote] = useState('');
+  const [quoteLoading, setQuoteLoading] = useState(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 
@@ -27,12 +33,19 @@ export default function Home() {
             className={styles.mainImage}
           />
         </div>
-        <Form onSubmit={handleSubmit} className={styles.inputform}> 
-          <Form.Group className='mb-3' controlId='prompt-input'> 
+        <Form onSubmit={handleSubmit} className={styles.inputForm}>
+          <Form.Group className='mb-3' controlId='prompt-input'>
             <Form.Label>Create a cringy quote about...</Form.Label>
-            <Form.Control type='text' placeholder='Enter a topic' />
+            <Form.Control
+              name='prompt'
+              placeholder='e.g. success, fear, potatoes'
+              maxLength={100}
+            />
           </Form.Group>
-        /</Form>
+          <Button type='submit' className='mb-3' disabled={quoteLoading}>
+            Make me cringe
+          </Button>
+        </Form>
       
       </main>
     </>
