@@ -3,11 +3,14 @@ import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import mainImage from '@/assets/images/main-image.png'
 import { Form, Button, Spinner } from 'react-bootstrap'
-/* import { FormEvent, useState } from 'react' */
+import { FormEvent } from 'react'
+
 
 export default function Home() {
 
- 
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+
+  }
 
   return (
     <>
@@ -24,6 +27,12 @@ export default function Home() {
             className={styles.mainImage}
           />
         </div>
+        <Form onSubmit={handleSubmit} className={styles.inputform}> 
+          <Form.Group className='mb-3' controlId='prompt-input'> 
+            <Form.Label>Create a cringy quote about...</Form.Label>
+            <Form.Control type='text' placeholder='Enter a topic' />
+          </Form.Group>
+        /</Form>
       
       </main>
     </>
