@@ -66,6 +66,9 @@ export default function Home() {
             Make me cringe
           </Button>
         </Form>
+        {quoteLoading && <Spinner animation='border' />}
+        {quoteLoadingError && "Something went wrong. Please try again."}
+        {quote && <h5>{quote}</h5>}
       
       </main>
     </>
