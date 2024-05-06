@@ -22,7 +22,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
  
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -36,5 +36,10 @@ export default function handler(
     return res.status(400).json({ error: "Prompt is to long" });
   }
 
-  
+  const completion = await openai.completions.create({
+    model: "text-davinci-003",
+    prompt: `Create a cringy motivational quote based on the following topic.\n
+    Topic: ${prompt}\n
+    Cringy motivational quote:`,
+});
 }
